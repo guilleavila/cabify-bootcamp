@@ -3,6 +3,8 @@ services:
   exercise1:
     # build: .
     image: "messageapp_exercise1:latest"
+    expose:
+      - "9001"
     ports:
       - "9001:9001"
     depends_on:
@@ -13,3 +15,5 @@ services:
     image: "cabify/backend-bootcamp-messageapp:latest"
     ports:
       - "3000:3000"
+    expose:
+      - "3000"

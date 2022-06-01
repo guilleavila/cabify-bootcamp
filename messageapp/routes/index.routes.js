@@ -7,7 +7,6 @@ router.post("/", (req, res, next) => {
 
   const { destination, body } = req.body
 
-  console.log('me cago en sus muertos')
   messageHandler
     .sendMessage({ destination, body })
     .then(({ data }) => res.status(200).json(data))
