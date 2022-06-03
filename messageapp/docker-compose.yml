@@ -3,9 +3,21 @@ services:
   exercise1:
     build: .
     # image: "messageapp_exercise1:latest"
+    # environment:
+    #   - PORT=9001
+    #   - URL=http://localhost
+    #   - MONGO_URL=mongodb://mongodb:27017
+    #   - DB_NAME=prueba
+    #   - API_VERSION=v1
     ports:
       - "9001:9001"
   messageapp:
     image: "cabify/backend-bootcamp-messageapp:latest"
     ports:
       - "3000:3000"
+  mongodb:
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017

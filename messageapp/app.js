@@ -1,13 +1,15 @@
 require("dotenv/config");
 
+require("./db")
+
 const express = require("express");
 
 const app = express();
 
 require("./config")(app);
 
-const allRoutes = require("./routes/index.routes");
-app.use("/", allRoutes);
+const serviceRoutes = require("./routes/index.routes");
+app.use("/", serviceRoutes);
 
 require("./error-handling")(app);
 
