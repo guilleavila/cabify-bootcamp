@@ -20,7 +20,6 @@ This document contains the requests our API accepts, and the possible success an
 ```
 
 <br/>
-<br/>
 
 # POST /messages
 
@@ -52,7 +51,6 @@ Sends message and stores it in database
 - Fails saving message in database: 500: 'Couldn't save message'
 
 <br/>
-<br/>
 
 # GET /messages
 Returns all messages in the system
@@ -76,8 +74,6 @@ Returns all messages in the system
 - Internal Server Error: 500: 'Could not get messages from the database'
 
 <br/>
-<br/>
-
 
 # Postman collection with test
 

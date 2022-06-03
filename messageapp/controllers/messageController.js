@@ -26,9 +26,10 @@ const sendAndSaveMessages = (req, res) => {
             .then(() => {
 
                 status = { sent: true, confirmed: true }
-                resMessage = "Message saved in database"
 
-                saveMessage(res, { destination, message, number, status }, resMessage)
+                saveMessage({ destination, message, number, status })
+                    .then(() => res.status(200).json({ message: "Message saved in database" }))
+                    .catch(() => res.status(500).json({ message: "Couldn't save message" }))
 
             })
             .catch(({ response }) => {
@@ -41,7 +42,9 @@ const sendAndSaveMessages = (req, res) => {
                     resMessage = "Message saved in database, sent but not confirmed"
                 }
 
-                saveMessage(res, { destination, message, number, status }, resMessage)
+                saveMessage({ destination, message, number, status })
+                    .then(() => res.status(200).json({ message: resMessage }))
+                    .catch(() => res.status(500).json({ message: "Couldn't save message" }))
             })
     }
 }
