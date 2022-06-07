@@ -1,32 +1,10 @@
 const router = require("express").Router();
-const ApiHandler = require('./../services/APIHandler')
+const { getAllMessages, sendAndSaveMessages } = require("../controllers/messageController");
 
-const messageHandler = new ApiHandler()
+// --- CREATE MESSAGES ---
+router.post("/messages", sendAndSaveMessages);
 
-router.post("/messages", (req, res, next) => {
-
-  const { destination, message } = req.body
-
-  if (!destination && !message) {
-    res.status(422).json({ message: "You should not pass empty object" })
-  }
-  else if (!destination) {
-    res.status(422).json({ message: "Destination is required" })
-  }
-  else if (!message) {
-    res.status(422).json({ message: "Message is required" })
-  }
-  else if (typeof destination !== "string" || typeof message !== "string") {
-    res.status(422).json({ message: "Only strings allowed" })
-  }
-  else {
-    messageHandler
-      .sendMessage({ destination, body: message })
-      .then(({ data }) => res.status(200).json(data))
-      .catch(err => res.status(500).json({ message: 'Internal Server Error' }))
-  }
-
-});
-
+// --- GET MESSAGES FROM DB ---
+router.get("/messages", getAllMessages);
 
 module.exports = router;
